@@ -1,123 +1,72 @@
-# black_mamba_pd
+# Projeto Black Mamba
 
-## Overview
+## I - Objetivo
 
-This is your new Kedro project, which was generated using `Kedro 0.18.6`.
-teste de sincronização com o github
+Esse projeto tem por objetivo estruturar uma solução de Aprendizado de Máquina seguindo a metodologia 
+TDSP (*Team Data Science Process*) para prever o sucesso ou não do arremesso do famoso jogador de basquete Kobe Briant.
 
-Take a look at the [Kedro documentation](https://kedro.readthedocs.io) to get started.
+As informações sobre os arremessos de Kobe Briant foram disponibilizadas pelo site 
+[kaggle](https://www.kaggle.com/c/kobe-bryant-shot-selection/data).
 
-## Rules and guidelines
+O Projeto está estruturado utilizando a biblioteca do [Kedro](https://kedro.readthedocs.io) que, ao utilizar uma padronização 
+própria na solução, facilita a modularização e o reaproveitamento do código.  
 
-In order to get the best out of the template:
+## II - Visão geral da solução
 
-* Don't remove any lines from the `.gitignore` file we provide
-* Make sure your results can be reproduced by following a [data engineering convention](https://kedro.readthedocs.io/en/stable/faq/faq.html#what-is-data-engineering-convention)
-* Don't commit data to your repository
-* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
+* O projeto está sendo publicado em repositório GitHub de nome [black-mamba](https://github.com/vinlins/black-mamba).  
 
-## How to install dependencies
+* Serão produzidos dois modelos para prever os arremessos: modelo de Regressão Logística e modelo Support Vector Machine.
 
-Declare any dependencies in `src/requirements.txt` for `pip` installation and `src/environment.yml` for `conda` installation.
+* Serão utilizados os dados de posição da quadra, distância, minutos que faltam para o fim da partida, o período do jogo e se o jogo 
+valia pelos *Play Offs* ou não. A variável preditora é o sucesso ou não do arremesso. 
 
-To install them, run:
 
-```
-pip install -r src/requirements.txt
-```
+### II.1) Criação da solução
 
-## How to run your Kedro pipeline
+### II.2) Etapas de um projeto de IA
 
-You can run your Kedro project with:
+### II.3) Estruturação do projeto
 
-```
-kedro run
-```
+O TDSP (*Team Data Science Process*) recomenda a existência de um formato padronizado para a soluçao e 
+a bilioteca `Kedro` nos auxiliou nesse objetivo. Ela separa os artefatos da solução em pastas próprias 
+para dados, documentação e código. Além disso, o `Kedro` organiza o código utilizando um formato de *nós* 
+e *pipelines* (fluxos de nós contínuos). Ele também cria uma forma unificada de registro das fonte de dados 
+carregadas e geradas durante o desenvolvimento da solução, além de poder também centralizar as informações 
+dos parâmetros utilizados.
 
-## How to test your Kedro project
+Conforme descrito na documentação do [Kedro](https://kedro.readthedocs.io), um *nó* circunda uma função 
+Python pura que nomeia as entradas e saídas dela. Assim, "os *nós* são o bloco de construção de um pipeline e 
+a saída de um nó pode ser a entrada de outro". Enquanto um *pipeline* "organiza as dependências e a 
+ordem de execução de uma coleção de *nós* e conecta entradas e saídas enquanto mantém seu código modular. 
+O *pipeline* determina a ordem de execução do *nó* resolvendo as dependências e não necessariamente executa 
+os *nós* na ordem em que são transmitidos."
 
-Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
+Nesse projeto criou-se um pipeline de processamento de dados ("PreparacaoDados") e um para 
+o treinamento do modelo, com esse mesmo nome.  
 
-```
-kedro test
-```
 
-To configure the coverage threshold, go to the `.coveragerc` file.
+### II.4) Ferramentas
 
-## Project dependencies
+### II.5) Artefatos
 
-To generate or update the dependency requirements for your project:
+## III - Desenvolvimento da Solução
 
-```
-kedro build-reqs
-```
+### III.1) Preparação dos dados
 
-This will `pip-compile` the contents of `src/requirements.txt` into a new file `src/requirements.lock`. You can see the output of the resolution by opening `src/requirements.lock`.
+Os seguintes dados relacionados ao arremesso efetuado serão utilizados na modelagem:  
 
-After this, if you'd like to update your project requirements, please update `src/requirements.txt` and re-run `kedro build-reqs`.
+* `lat`:  latitude do arremesso - (variável contínua)  
+* `lon`:  logitude do arremesso - (variável contínua)   
+* `minutes_remaining`: minutos que faltam para o fim do período (1 a 11 min)  - (variável contínua)  
+* `period`: o período do jogo do arremesso. Um jogo de basquete possui, na NBA (*National Basketball Association*) ou liga internacional, 4 períodos de 12 minutos. Em caso de empate pode haver mais alguns períodos de 5 minutos para desempatar. (variável categórica)   
+* `playoffs`: se a partida era dos *playoffs* ou não - (variável booleana e categórica)
+* `shot_distance`: distância do arremesso - (variável contínua)    
+* `shot_made_flag`: Se o arremesso foi bem sucedido ou não (variável booleana categórica - preditora da classificação)
 
-[Further information about project dependencies](https://kedro.readthedocs.io/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
+### III.2) Treinamento
 
-## How to work with Kedro and notebooks
+### III.3) Produção
 
-> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, `catalog`, and `startup_error`.
->
-> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r src/requirements.txt` you will not need to take any extra steps before you use them.
+### III.4) Monitoramento
 
-### Jupyter
-To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
-
-```
-pip install jupyter
-```
-
-After installing Jupyter, you can start a local notebook server:
-
-```
-kedro jupyter notebook
-```
-
-### JupyterLab
-To use JupyterLab, you need to install it:
-
-```
-pip install jupyterlab
-```
-
-You can also start JupyterLab:
-
-```
-kedro jupyter lab
-```
-
-### IPython
-And if you want to run an IPython session:
-
-```
-kedro ipython
-```
-
-### How to convert notebook cells to nodes in a Kedro project
-You can move notebook code over into a Kedro project structure using a mixture of [cell tagging](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#release-5-0-0) and Kedro CLI commands.
-
-By adding the `node` tag to a cell and running the command below, the cell's source code will be copied over to a Python file within `src/<package_name>/nodes/`:
-
-```
-kedro jupyter convert <filepath_to_my_notebook>
-```
-> *Note:* The name of the Python file matches the name of the original notebook.
-
-Alternatively, you may want to transform all your notebooks in one go. Run the following command to convert all notebook files found in the project root directory and under any of its sub-folders:
-
-```
-kedro jupyter convert --all
-```
-
-### How to ignore notebook output cells in `git`
-To automatically strip out all output cell contents before committing to `git`, you can run `kedro activate-nbstripout`. This will add a hook in `.git/config` which will run `nbstripout` before anything is committed to `git`.
-
-> *Note:* Your output cells will be retained locally.
-
-## Package your Kedro project
-
-[Further information about building project documentation and packaging your project](https://kedro.readthedocs.io/en/stable/tutorial/package_a_project.html)
+## IV - Conclusão

@@ -1,22 +1,29 @@
 """
-This is a boilerplate pipeline 'PreparacaoDados'
-generated using Kedro 0.18.6
+Pipeline 'PreparacaoDados'
 """
 
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import load_data_kobe
+from .nodes import load_data_kobe,conform_data_kobe, train_test_split_data_kobe
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
             func = load_data_kobe,
-            inputs = None,
-            # No Output vc coloca uma string do local onde vai salvar o resultado
+            name = "load_data_kobe",            
+            inputs = 'raw_data_kobe',
             outputs='data_filtered',
-            # Nome do nó
-            name = "load_data_kobe"
+        ),
+        node(
+            func = conform_data_kobe,
+            name = "conform_data_kobe",            
+            inputs = 'data_filtered',
+            outputs='data_conformed',
+        ),
+        node(
+            func = train_test_split_data_kobe,
+            name = "train_test_split_data_kobe",            
+            inputs = 'data_conformed',
+            outputs=['base_train','base_test'],
         )
-        
-        
     ])

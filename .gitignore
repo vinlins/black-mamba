@@ -158,3 +158,6 @@ venv_black_mamba_pd
 
 # mypy
 .mypy_cache/
+
+# mlruns
+mlruns/
