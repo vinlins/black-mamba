@@ -22,3 +22,6 @@ base_train:
 base_test:
   type: pandas.ParquetDataSet
   filepath: data/05_model_input/base_test.parquet
+
+preparacao_dados_metrics:
+  type: kedro_mlflow.io.metrics.MlflowMetricsDataSet
