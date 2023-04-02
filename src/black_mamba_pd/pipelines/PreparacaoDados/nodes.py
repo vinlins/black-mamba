@@ -20,10 +20,10 @@ def conform_data_kobe(data):
     data = data.dropna()
     return data   
 
-def train_test_split_data_kobe(data, n_test_size):
+def train_test_split_data_kobe(data, n_test_size, n_random_state):
     X = data.drop(columns=['shot_made_flag']).copy()
     y = data['shot_made_flag']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=n_test_size, random_state=17042023)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=n_test_size, random_state = n_random_state)
     base_train = pd.merge(X_train, y_train, left_index=True, right_index=True)
     base_test = pd.merge(X_test, y_test, left_index=True, right_index=True)
     

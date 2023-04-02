@@ -23,7 +23,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             func = train_test_split_data_kobe,
             name = "train_test_split_data_kobe",            
-            inputs = ['data_conformed','params:test_size'],
+            inputs = ['data_conformed','params:test_size','params:random_state'],
             outputs=['base_train','base_test'],
         ),
         node(
