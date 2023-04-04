@@ -151,7 +151,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-venv_black_mamba_pd
 
 # mkdocs documentation
 /site
