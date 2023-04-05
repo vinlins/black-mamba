@@ -25,3 +25,29 @@ base_test:
 
 preparacao_dados_metrics:
   type: kedro_mlflow.io.metrics.MlflowMetricsDataSet
+
+lr_model:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/lr_model.pkl
+
+pred_lr_model:
+  type: pandas.ParquetDataSet
+  filepath: data/07_model_output/pred_lr_model.parquet
+
+modelo_reglog_metrics:
+  type: kedro_mlflow.io.metrics.MlflowMetricsDataSet
+
+clf_model:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/clf_model.pkl
+
+pred_clf_model:
+  type: pandas.ParquetDataSet
+  filepath: data/07_model_output/pred_clf_model.parquet
+
+modelo_clf_metrics:
+  type: kedro_mlflow.io.metrics.MlflowMetricsDataSet
