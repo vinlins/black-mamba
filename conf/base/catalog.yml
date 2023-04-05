@@ -29,8 +29,9 @@ preparacao_dados_metrics:
 lr_model:
   type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
   data_set:
-    type: pickle.PickleDataSet
-    filepath: data/06_models/lr_model.pkl
+    type: kedro_mlflow.io.models.MlflowModelSaverDataSet
+    flavor: mlflow.sklearn
+    filepath: data/06_models/lr_model
 
 pred_lr_model:
   type: pandas.ParquetDataSet
@@ -42,8 +43,9 @@ modelo_reglog_metrics:
 clf_model:
   type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
   data_set:
-    type: pickle.PickleDataSet
-    filepath: data/06_models/clf_model.pkl
+    type: kedro_mlflow.io.models.MlflowModelSaverDataSet
+    flavor: mlflow.sklearn
+    filepath: data/06_models/clf_model
 
 pred_clf_model:
   type: pandas.ParquetDataSet
