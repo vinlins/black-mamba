@@ -20,3 +20,4 @@ pandas
 pycaret
 kedro-mlflow
 kedro-viz
+streamlit

@@ -8,6 +8,8 @@ aiofiles==22.1.0
     # via kedro-viz
 alembic==1.10.2
     # via mlflow
+altair==4.2.2
+    # via streamlit
 ansi2html==1.8.0
     # via jupyter-dash
 antlr4-python3-runtime==4.9.3
@@ -42,6 +44,10 @@ babel==2.12.1
     # via jupyterlab-server
 backcall==0.2.0
     # via ipython
+backports-zoneinfo==0.2.1
+    # via
+    #   pytz-deprecation-shim
+    #   tzlocal
 beautifulsoup4==4.12.0
     # via nbconvert
 binaryornot==0.4.4
@@ -50,10 +56,14 @@ black==22.12.0
     # via -r requirements.in
 bleach==6.0.0
     # via nbconvert
+blinker==1.6.1
+    # via streamlit
 build==0.10.0
     # via pip-tools
 cachetools==5.3.0
-    # via kedro
+    # via
+    #   kedro
+    #   streamlit
 category-encoders==2.6.0
     # via pycaret
 certifi==2022.12.7
@@ -73,6 +83,7 @@ click==8.1.3
     #   kedro
     #   mlflow
     #   pip-tools
+    #   streamlit
     #   uvicorn
 cloudpickle==2.2.1
     # via
@@ -116,7 +127,9 @@ databricks-cli==0.17.6
 debugpy==1.6.6
     # via ipykernel
 decorator==5.1.1
-    # via ipython
+    # via
+    #   ipython
+    #   validators
 defusedxml==0.7.1
     # via nbconvert
 deprecated==1.2.13
@@ -128,7 +141,9 @@ docker==6.0.1
 dynaconf==3.1.12
     # via kedro
 entrypoints==0.4
-    # via mlflow
+    # via
+    #   altair
+    #   mlflow
 exceptiongroup==1.1.1
     # via pytest
 executing==1.2.0
@@ -154,6 +169,7 @@ gitpython==3.1.31
     # via
     #   kedro
     #   mlflow
+    #   streamlit
 graphql-core==3.2.3
     # via strawberry-graphql
 greenlet==2.0.2
@@ -180,6 +196,7 @@ importlib-metadata==6.1.0
     #   nbconvert
     #   numba
     #   pycaret
+    #   streamlit
 importlib-resources==5.12.0
     # via
     #   alembic
@@ -223,6 +240,7 @@ jedi==0.18.2
     # via ipython
 jinja2==3.1.2
     # via
+    #   altair
     #   cookiecutter
     #   flask
     #   jinja2-time
@@ -234,6 +252,7 @@ jinja2==3.1.2
     #   nbconvert
     #   notebook
     #   pycaret
+    #   pydeck
 jinja2-time==0.2.0
     # via cookiecutter
 jmespath==0.10.0
@@ -250,6 +269,7 @@ json5==0.9.11
     # via jupyterlab-server
 jsonschema==4.17.3
     # via
+    #   altair
     #   jupyterlab-server
     #   nbformat
 jupyter==1.0.0
@@ -399,6 +419,7 @@ numba==0.56.4
     #   sktime
 numpy==1.23.5
     # via
+    #   altair
     #   category-encoders
     #   contourpy
     #   imbalanced-learn
@@ -412,12 +433,14 @@ numpy==1.23.5
     #   pmdarima
     #   pyarrow
     #   pycaret
+    #   pydeck
     #   pyod
     #   scikit-learn
     #   scipy
     #   shap
     #   sktime
     #   statsmodels
+    #   streamlit
     #   tbats
     #   yellowbrick
 oauthlib==3.2.2
@@ -446,9 +469,11 @@ packaging==23.0
     #   qtpy
     #   shap
     #   statsmodels
+    #   streamlit
 pandas==1.5.3
     # via
     #   -r requirements.in
+    #   altair
     #   category-encoders
     #   kedro-viz
     #   mlflow
@@ -458,6 +483,7 @@ pandas==1.5.3
     #   shap
     #   sktime
     #   statsmodels
+    #   streamlit
 pandocfilters==1.5.0
     # via nbconvert
 parso==0.8.3
@@ -471,7 +497,9 @@ patsy==0.5.3
 pickleshare==0.7.5
     # via ipython
 pillow==9.4.0
-    # via matplotlib
+    # via
+    #   matplotlib
+    #   streamlit
 pip-tools==6.12.3
     # via kedro
 pkgutil-resolve-name==1.3.10
@@ -506,8 +534,10 @@ prompt-toolkit==3.0.38
     # via
     #   ipython
     #   jupyter-console
-protobuf==4.22.1
-    # via mlflow
+protobuf==3.20.3
+    # via
+    #   mlflow
+    #   streamlit
 psutil==5.9.4
     # via
     #   ipykernel
@@ -515,7 +545,9 @@ psutil==5.9.4
 pure-eval==0.2.2
     # via stack-data
 pyarrow==11.0.0
-    # via mlflow
+    # via
+    #   mlflow
+    #   streamlit
 pycaret==3.0.0
     # via -r requirements.in
 pycodestyle==2.8.0
@@ -526,6 +558,8 @@ pydantic==1.10.7
     # via
     #   fastapi
     #   kedro-mlflow
+pydeck==0.8.0
+    # via streamlit
 pyflakes==2.4.0
     # via flake8
 pygments==2.14.0
@@ -537,6 +571,8 @@ pygments==2.14.0
     #   rich
 pyjwt==2.6.0
     # via databricks-cli
+pympler==1.0.1
+    # via streamlit
 pyod==1.0.9
     # via pycaret
 pyparsing==3.0.9
@@ -561,6 +597,7 @@ python-dateutil==2.8.2
     #   matplotlib
     #   pandas
     #   strawberry-graphql
+    #   streamlit
 python-dotenv==1.0.0
     # via uvicorn
 python-slugify==8.0.1
@@ -572,6 +609,8 @@ pytz==2022.7.1
     #   babel
     #   mlflow
     #   pandas
+pytz-deprecation-shim==0.1.0.post0
+    # via tzlocal
 pywin32==306
     # via
     #   docker
@@ -612,10 +651,13 @@ requests==2.28.2
     #   kedro-telemetry
     #   mlflow
     #   pycaret
+    #   streamlit
 retrying==1.3.4
     # via jupyter-dash
 rich==13.3.2
-    # via kedro
+    # via
+    #   kedro
+    #   streamlit
 rope==1.7.0
     # via kedro
 schemdraw==0.16
@@ -702,6 +744,8 @@ statsmodels==0.13.5
     #   pycaret
 strawberry-graphql==0.171.1
     # via kedro-viz
+streamlit==1.21.0
+    # via -r requirements.in
 tabulate==0.9.0
     # via databricks-cli
 tbats==1.1.2
@@ -722,7 +766,9 @@ threadpoolctl==3.1.0
 tinycss2==1.2.1
     # via nbconvert
 toml==0.10.2
-    # via kedro
+    # via
+    #   kedro
+    #   streamlit
 tomli==2.0.1
     # via
     #   black
@@ -732,6 +778,8 @@ tomli==2.0.1
     #   pyproject-hooks
     #   pytest
     #   pytoolconfig
+toolz==0.12.0
+    # via altair
 toposort==1.10
     # via kedro
 tornado==6.2
@@ -742,6 +790,7 @@ tornado==6.2
     #   jupyterlab
     #   nbclassic
     #   notebook
+    #   streamlit
     #   terminado
 tqdm==4.65.0
     # via
@@ -770,10 +819,18 @@ typing-extensions==4.5.0
     # via
     #   alembic
     #   black
+    #   blinker
     #   pydantic
     #   rich
     #   starlette
     #   strawberry-graphql
+    #   streamlit
+tzdata==2023.3
+    # via
+    #   pytz-deprecation-shim
+    #   tzlocal
+tzlocal==4.3
+    # via streamlit
 urllib3==1.26.15
     # via
     #   docker
@@ -781,8 +838,12 @@ urllib3==1.26.15
     #   requests
 uvicorn[standard]==0.20.0
     # via kedro-viz
+validators==0.20.0
+    # via streamlit
 waitress==2.1.2
     # via mlflow
+watchdog==3.0.0
+    # via streamlit
 watchfiles==0.19.0
     # via uvicorn
 watchgod==0.8.2
