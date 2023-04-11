@@ -4,7 +4,7 @@ Pipeline 'PreparacaoDados'
 
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import load_data_kobe,conform_data_kobe, train_test_split_data_kobe,metrics_preparacao_dados
+from .nodes import load_data_kobe,conform_data_kobe, train_test_split_data_kobe,metrics_preparacao_dados,generate_base_inference
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
@@ -13,6 +13,12 @@ def create_pipeline(**kwargs) -> Pipeline:
             name = "load_data_kobe",            
             inputs = 'raw_data_kobe',
             outputs='data_filtered',
+        ),
+        node(
+            func = generate_base_inference,
+            name = "generate_base_inference",            
+            inputs = 'raw_data_kobe',
+            outputs='base_inference',
         ),
         node(
             func = conform_data_kobe,

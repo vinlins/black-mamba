@@ -16,6 +16,12 @@ def load_data_kobe(data):
     data = data[['lat','lon','minutes_remaining', 'period', 'playoffs', 'shot_distance','shot_made_flag']]
     return data
 
+def generate_base_inference(data):
+    data = data[data['shot_type'] == '3PT Field Goal']
+    data = data[['lat','lon','minutes_remaining', 'period', 'playoffs', 'shot_distance','shot_made_flag']]
+    data = data.dropna()
+    return data
+
 def conform_data_kobe(data):
     data = data.dropna()
     return data   

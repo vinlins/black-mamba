@@ -23,6 +23,10 @@ base_test:
   type: pandas.ParquetDataSet
   filepath: data/05_model_input/base_test.parquet
 
+base_inference:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/base_inference.csv
+
 preparacao_dados_metrics:
   type: kedro_mlflow.io.metrics.MlflowMetricsDataSet
 
