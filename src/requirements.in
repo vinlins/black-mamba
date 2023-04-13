@@ -21,3 +21,4 @@ pycaret
 kedro-mlflow
 kedro-viz
 streamlit
+seaborn
