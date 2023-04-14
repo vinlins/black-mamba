@@ -11,15 +11,25 @@ import logging
 LOGGER = logging.getLogger(__name__)
 
 def treinamento_modelo_reglog(data_train, n_random_state):
+    """
+    Utiliza a base de treino para realizar o treinamento dos modelos usando a biblioteca pyCaret.
+    """
     setup_clf_lr = setup(data = data_train, target='shot_made_flag', session_id = n_random_state )
     lr_model = setup_clf_lr.create_model('lr')
     return lr_model
 
 def teste_modelo_reglog(lr_model, data_test):
+    """
+    Realiza o teste com os modelos treinado na base de teste e oferece como saída os dados 
+    com as colunas de predição e probabilidade da predição.
+    """
     pred_lr = predict_model(lr_model, data_test)
     return pred_lr
 
 def metrics_modelo_reglog(pred_lr):
+    """
+    Faz o registro no MLFlow das métricas de “F1 Score” e “Log Loss” do modelo.
+    """
     f1_metric = f1_score(pred_lr[['shot_made_flag']], pred_lr[['prediction_label']])
     # Capturar a probabilidade de acerto apenas (label = 1) para cálculo do Log Loss
     pred_lr['prediction_score_label_1'] = np.where(pred_lr['prediction_label']==1, pred_lr['prediction_score'], 1-pred_lr['prediction_score'])
