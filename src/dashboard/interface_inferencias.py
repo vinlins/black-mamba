@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, f1_score, precision_score, recall_score
+from sklearn.metrics import confusion_matrix, f1_score, precision_score, recall_score, log_loss
 
 url = 'http://localhost:5000/invocations'
 
@@ -52,6 +52,8 @@ def pagina_varios_arremessos():
       df_pred = pd.DataFrame(results_inference.json())
       st.write("**F1 Score**")
       st.text(f1_score(df_shot_flag, df_pred['predictions']))
+      st.write("**Log Loss**")
+      st.text(log_loss(df_shot_flag, df_pred['predictions']))      
       st.write("**Precisão**")
       st.text(precision_score(df_shot_flag, df_pred['predictions']))
       st.write("**Recall**")

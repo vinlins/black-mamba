@@ -15,7 +15,8 @@ def treinamento_modelo_clf(data_train, n_random_state):
     Utiliza a base de treino para realizar o treinamento dos modelos usando a biblioteca pyCaret.
     """
     setup_clf = setup(data = data_train, target='shot_made_flag', session_id = n_random_state)
-    melhores_modelos = compare_models(n_select=5, sort="F1")
+    setup_clf.add_metric('logloss','Log Loss', log_loss, greater_is_better=False)
+    melhores_modelos = compare_models(n_select=5, sort="Log Loss")
     clf_model = melhores_modelos[0]
     return clf_model
 
@@ -32,9 +33,7 @@ def metrics_modelo_clf(pred_clf):
     Faz o registro no MLFlow das métricas de “F1 Score” e “Log Loss” do modelo.
     """
     f1_metric = f1_score(pred_clf[['shot_made_flag']], pred_clf[['prediction_label']])
-    # Capturar a probabilidade de acerto apenas (label = 1) para cálculo do Log Loss
-    pred_clf['prediction_score_label_1'] = np.where(pred_clf['prediction_label']==1, pred_clf['prediction_score'], 1-pred_clf['prediction_score'])
-    log_loss_metric = log_loss(pred_clf[['shot_made_flag']], pred_clf[['prediction_score_label_1']])
+    log_loss_metric = log_loss(pred_clf[['shot_made_flag']], pred_clf[['prediction_label']])
     LOGGER.info(f"F1 Score : {f1_metric}")
     LOGGER.info(f"Log loss: {log_loss_metric}")
     return {
